@@ -1,0 +1,22 @@
+<mat-form-field class="example-full-width">
+  <mat-label>City Name</mat-label>
+  <input
+    #input
+    type="text"
+    placeholder="Start typing to search for a city"
+    matInput
+    [formControl]="inputControl"
+    [matAutocomplete]="auto"
+    (input)="onInput($event)"
+  />
+  <mat-autocomplete
+    requireSelection
+    #auto="matAutocomplete"
+    [displayWith]="displayLocation"
+    (optionSelected)="onOptionSelect($event)"
+  >
+    @for (option of options; track trackLocation(option)) {
+    <mat-option [value]="option">{{ displayLocation(option) }}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

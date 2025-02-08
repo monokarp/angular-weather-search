@@ -1,0 +1,10 @@
+<div class="flex-col">
+  <app-city-search
+    #searchComponent
+    [options]="(store.locations$ | async)!"
+    [selected]="store.selectedLocation$ | async"
+  ></app-city-search>
+  <app-weather-display
+    [data]="store.forecastData$ | async"
+  ></app-weather-display>
+</div>

@@ -1,0 +1,7 @@
+@use '../styles';
+
+.container {
+    @extend .flex-col;
+
+    min-height: 100%;
+}
