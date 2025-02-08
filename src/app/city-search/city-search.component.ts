@@ -4,10 +4,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Location } from '../data/weather.types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-city-search',
-  imports: [MatFormFieldModule, MatInputModule, MatAutocompleteModule, ReactiveFormsModule],
+  imports: [MatFormFieldModule, MatInputModule, MatAutocompleteModule, ReactiveFormsModule, MatIconModule],
   templateUrl: './city-search.component.html',
   styleUrl: './city-search.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,6 +22,10 @@ export class CitySearchComponent {
 
   public readonly search = output<string>();
   public readonly select = output<Location>();
+
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+    iconRegistry.addSvgIcon('search', sanitizer.bypassSecurityTrustResourceUrl('search.svg'));
+  }
 
   public trackLocation(value: Location): string {
     return `${value.lon}_${value.lat}`;

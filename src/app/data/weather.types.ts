@@ -1,7 +1,7 @@
 import { CurrentWeatherResponse, ForecastItem } from './integration/openweather.types';
 
-type CurrentWeather = CurrentWeatherResponse;
-type DailyWeather = ForecastItem;
+export type CurrentWeather = CurrentWeatherResponse;
+export type DailyWeather = ForecastItem;
 
 export interface Coordinates {
   lat: number;

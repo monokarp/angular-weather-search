@@ -1,4 +1,4 @@
-<mat-form-field class="example-full-width">
+<mat-form-field class="w-full">
   <mat-label>City Name</mat-label>
   <input
     #input
@@ -9,6 +9,7 @@
     [matAutocomplete]="auto"
     (input)="onInput($event)"
   />
+  <mat-icon svgIcon="search" matPrefix></mat-icon>
   <mat-autocomplete
     requireSelection
     #auto="matAutocomplete"

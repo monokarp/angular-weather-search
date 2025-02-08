@@ -16,6 +16,8 @@ export interface CurrentWeatherResponse {
     temp_min: number; // Minimum temperature at the moment. This is minimal currently observed temperature (within large megalopolises and urban areas). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
     temp_max: number; // Maximum temperature at the moment. This is maximal currently observed temperature (within large megalopolises and urban areas). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
     pressure: number; // Atmospheric pressure (on the sea level, if there is no sea_level or grnd_level data), hPa
+    sea_level: number;
+    grnd_level: number;
     humidity: number; // Humidity, %
   };
   visibility: number; // Visibility, meter. The maximum value of the visibility is 10km

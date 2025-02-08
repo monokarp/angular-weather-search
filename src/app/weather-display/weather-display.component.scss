@@ -1,0 +1,9 @@
+@use '../../styles';
+
+:host {
+    @extend .flex-row;
+    flex-wrap: wrap;
+
+    justify-content: space-evenly;
+    align-items: center;
+}

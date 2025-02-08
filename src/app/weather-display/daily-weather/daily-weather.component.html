@@ -1,0 +1,7 @@
+<div class="flex-col">
+  <div>{{ data.dt_txt | date }}</div>
+  <div>{{ data.main.temp_min }}C - {{ data.main.temp_max }}C</div>
+  @for (one of data.weather; track one.id) {
+    <app-weather-conditions [data]="one"></app-weather-conditions>
+  }
+</div>

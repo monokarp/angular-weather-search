@@ -1,0 +1,7 @@
+<div class="flex-col">
+  <div>Todays temperature is {{ data.main.temp }}C</div>
+  <div>Humidity is {{ data.main.humidity }}%</div>
+  @for (one of data.weather; track one.id) {
+    <app-weather-conditions [data]="one"></app-weather-conditions>
+  }
+</div>

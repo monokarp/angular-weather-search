@@ -3,5 +3,8 @@
 .container {
   @extend .flex-col;
 
-  min-height: 100%;
+  height: 1vh;
+  max-width: 50%;
+
+  margin: 2rem auto;
 }
