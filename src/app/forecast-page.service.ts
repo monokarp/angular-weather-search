@@ -7,7 +7,7 @@ import { Location } from './data/weather.types';
 export class ForecastPageService {
   constructor(
     private store: ForecastPageStore,
-    private weather: WeatherService
+    private weather: WeatherService,
   ) {}
 
   public async searchCity(name: string) {

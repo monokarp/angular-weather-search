@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { outputToObservable } from '@angular/core/rxjs-interop';
 import { debounceTime, switchMap, tap } from 'rxjs';
 import { CitySearchComponent } from './city-search/city-search.component';
@@ -18,25 +13,17 @@ import { WeatherDisplayComponent } from './weather-display/weather-display.compo
 @Component({
   selector: 'app-root',
   imports: [CommonModule, CitySearchComponent, WeatherDisplayComponent],
-  providers: [
-    OpenWeatherService,
-    WeatherService,
-    ForecastPageStore,
-    ForecastPageService,
-  ],
+  providers: [OpenWeatherService, WeatherService, ForecastPageStore, ForecastPageService],
   templateUrl: './forecast-page.component.html',
   styleUrl: './forecast-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ForecastPageComponent
-  extends DisposableComponent
-  implements AfterViewInit
-{
+export class ForecastPageComponent extends DisposableComponent implements AfterViewInit {
   @ViewChild('searchComponent') searchComponent!: CitySearchComponent;
 
   constructor(
     public store: ForecastPageStore,
-    private service: ForecastPageService
+    private service: ForecastPageService,
   ) {
     super();
   }
@@ -47,7 +34,7 @@ export class ForecastPageComponent
         this.takeUntilDispose(),
         debounceTime(300),
         tap((value) => console.log('search', value)),
-        switchMap((cityName) => this.service.searchCity(cityName))
+        switchMap((cityName) => this.service.searchCity(cityName)),
       )
       .subscribe();
 
@@ -55,7 +42,7 @@ export class ForecastPageComponent
       .pipe(
         this.takeUntilDispose(),
         tap((value) => console.log('select', value)),
-        switchMap((location) => this.service.selectLocation(location))
+        switchMap((location) => this.service.selectLocation(location)),
       )
       .subscribe();
   }

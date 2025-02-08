@@ -16,9 +16,7 @@ export class WeatherService {
   }
 
   public async suggestLocations(cityName: string): Promise<Location[]> {
-    const geocodeLocations = await this.openWeatherService.possibleLocationsOf(
-      cityName
-    );
+    const geocodeLocations = await this.openWeatherService.possibleLocationsOf(cityName);
 
     return geocodeLocations.map((one) => ({
       name: one.name,

@@ -19,23 +19,18 @@ export class OpenWeatherService {
 
   constructor(private http: HttpClient) {}
 
-  public currentWeatherAt(
-    coords: Coordinates
-  ): Promise<CurrentWeatherResponse> {
+  public currentWeatherAt(coords: Coordinates): Promise<CurrentWeatherResponse> {
     const { lat, lon } = coords;
 
     return firstValueFrom(
-      this.http.get<CurrentWeatherResponse>(
-        'https://api.openweathermap.org/data/2.5/weather',
-        {
-          params: {
-            lat,
-            lon,
-            units: this.measuringSystem,
-            appid: environment.ApiKey,
-          },
-        }
-      )
+      this.http.get<CurrentWeatherResponse>('https://api.openweathermap.org/data/2.5/weather', {
+        params: {
+          lat,
+          lon,
+          units: this.measuringSystem,
+          appid: environment.ApiKey,
+        },
+      }),
     );
   }
 
@@ -43,35 +38,27 @@ export class OpenWeatherService {
     const { lat, lon } = coords;
 
     return firstValueFrom(
-      this.http.get<ForecastResponse>(
-        'https://api.openweathermap.org/data/2.5/forecast',
-        {
-          params: {
-            lat,
-            lon,
-            cnt: this.forecastTimestampsCount,
-            units: this.measuringSystem,
-            appid: environment.ApiKey,
-          },
-        }
-      )
+      this.http.get<ForecastResponse>('https://api.openweathermap.org/data/2.5/forecast', {
+        params: {
+          lat,
+          lon,
+          cnt: this.forecastTimestampsCount,
+          units: this.measuringSystem,
+          appid: environment.ApiKey,
+        },
+      }),
     );
   }
 
-  public async possibleLocationsOf(
-    cityName: string
-  ): Promise<DirectGeocodingResponse[]> {
+  public async possibleLocationsOf(cityName: string): Promise<DirectGeocodingResponse[]> {
     const possibleLocations = await firstValueFrom(
-      this.http.get<DirectGeocodingResponse[]>(
-        'http://api.openweathermap.org/geo/1.0/direct',
-        {
-          params: {
-            q: cityName,
-            limit: this.locationsLimit,
-            appid: environment.ApiKey,
-          },
-        }
-      )
+      this.http.get<DirectGeocodingResponse[]>('http://api.openweathermap.org/geo/1.0/direct', {
+        params: {
+          q: cityName,
+          limit: this.locationsLimit,
+          appid: environment.ApiKey,
+        },
+      }),
     );
 
     return possibleLocations;

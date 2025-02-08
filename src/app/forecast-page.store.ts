@@ -6,9 +6,7 @@ import { Forecast, Location } from './data/weather.types';
 export class ForecastPageStore {
   public readonly locations$ = new BehaviorSubject<Location[]>([]);
 
-  public readonly selectedLocation$ = new BehaviorSubject<Location | null>(
-    null
-  );
+  public readonly selectedLocation$ = new BehaviorSubject<Location | null>(null);
 
   public readonly forecastData$ = new BehaviorSubject<Forecast | null>(null);
 }

@@ -106,7 +106,7 @@ export interface WeatherCondition {
 
 export interface DirectGeocodingResponse {
   name: string; // Name of the location
-  local_names?: { [key: string]: string }; // Localized names of the location
+  local_names?: Record<string, string>; // Localized names of the location
   lat: number; // Latitude
   lon: number; // Longitude
   country: string; // Country code (ISO 3166)

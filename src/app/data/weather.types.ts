@@ -1,7 +1,4 @@
-import {
-  CurrentWeatherResponse,
-  ForecastItem,
-} from './integration/openweather.types';
+import { CurrentWeatherResponse, ForecastItem } from './integration/openweather.types';
 
 type CurrentWeather = CurrentWeatherResponse;
 type DailyWeather = ForecastItem;
