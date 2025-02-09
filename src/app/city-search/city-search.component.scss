@@ -1,0 +1,9 @@
+.bookmark-btn {
+  border-radius: 50%;
+  padding: 0.3rem;
+
+  &:hover {
+    background-color: white;
+    fill: black;
+  }
+}

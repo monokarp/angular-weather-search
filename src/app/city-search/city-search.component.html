@@ -17,7 +17,15 @@
     (optionSelected)="onOptionSelect($event)"
   >
     @for (option of options; track trackLocation(option)) {
-      <mat-option [value]="option">{{ displayLocation(option) }}</mat-option>
+      <mat-option [value]="option">
+        <div>{{ displayLocation(option) }}</div>
+        <div style="font-size: 0.8rem">{{ displayCoords(option) }}</div>
+        <mat-icon
+          class="bookmark-btn"
+          [svgIcon]="option.isBookmarked ? 'bookmark_star' : 'bookmark'"
+          (click)="onBookmark($event, option)"
+        ></mat-icon>
+      </mat-option>
     }
   </mat-autocomplete>
 </mat-form-field>

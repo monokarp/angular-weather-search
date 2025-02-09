@@ -27,3 +27,7 @@ export interface Location {
   lon: number;
   country: string;
 }
+
+export interface LocationSelectOption extends Location {
+  isBookmarked: boolean;
+}
