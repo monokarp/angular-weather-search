@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="label">Toggle network faults:</div>
+  <mat-button-toggle-group class="button-group" multiple (change)="onChange($event)">
+    <mat-button-toggle value="slow">Slow network</mat-button-toggle>
+    <mat-button-toggle value="errors">Requests throw error</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>

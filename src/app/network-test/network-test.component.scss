@@ -1,0 +1,27 @@
+:host {
+    position: fixed;
+    bottom: 1rem;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .label {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    .button-group {
+        .mat-button-toggle {
+            background-color: rgb(9, 67, 14);
+
+            &.mat-button-toggle-checked {
+                background-color: rgb(188, 17, 17);
+            }
+        }
+    }
+}

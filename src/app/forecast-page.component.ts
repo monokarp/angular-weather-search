@@ -4,17 +4,24 @@ import { outputToObservable } from '@angular/core/rxjs-interop';
 import { debounceTime, map, switchMap, tap } from 'rxjs';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { DisposableComponent } from './common/disposable.component';
-import { OpenWeatherService } from './data/integration/open-weather.service';
 import { WeatherService } from './data/weather.service';
 import { ForecastPageService } from './forecast-page.service';
 import { ForecastPageStore } from './forecast-page.store';
 import { WeatherDisplayComponent } from './weather-display/weather-display.component';
 import { LocationBookmarkService } from './location-bookmark.service';
+import { NetworkTestComponent } from './network-test/network-test.component';
+import { BadNetworkWeatherService } from './data/bad-network-weather.service';
+import { DataModule } from './data/data.module';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, CitySearchComponent, WeatherDisplayComponent],
-  providers: [OpenWeatherService, WeatherService, ForecastPageStore, ForecastPageService, LocationBookmarkService],
+  imports: [CommonModule, CitySearchComponent, WeatherDisplayComponent, DataModule, NetworkTestComponent],
+  providers: [
+    { provide: WeatherService, useExisting: BadNetworkWeatherService },
+    ForecastPageStore,
+    ForecastPageService,
+    LocationBookmarkService,
+  ],
   templateUrl: './forecast-page.component.html',
   styleUrl: './forecast-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
