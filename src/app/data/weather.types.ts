@@ -1,7 +1,15 @@
-import { CurrentWeatherResponse, ForecastItem } from './integration/openweather.types';
+import { CurrentWeatherResponse, WeatherCondition } from './integration/openweather.types';
 
 export type CurrentWeather = CurrentWeatherResponse;
-export type DailyWeather = ForecastItem;
+
+export type WeatherConditionData = Omit<WeatherCondition, 'id' | 'main'>;
+
+export interface DailyWeather {
+  date: string;
+  min: number;
+  max: number;
+  weather: WeatherConditionData;
+}
 
 export interface Coordinates {
   lat: number;

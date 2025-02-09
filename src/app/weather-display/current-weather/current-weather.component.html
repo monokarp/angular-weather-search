@@ -1,7 +1,17 @@
-<div class="flex-col">
-  <div>Todays temperature is {{ data.main.temp }}C</div>
-  <div>Humidity is {{ data.main.humidity }}%</div>
-  @for (one of data.weather; track one.id) {
-    <app-weather-conditions [data]="one"></app-weather-conditions>
-  }
+<div class="container">
+  <div class="text-col">
+    <div class="cityname">{{ data.name }}</div>
+    <div class="degrees">{{ data.main.temp | degrees }}</div>
+    <div>Feels like {{ data.main.feels_like | degrees }}</div>
+    <div>{{ data.main.humidity }}% humidity</div>
+  </div>
+
+  <div class="weather">
+    @for (one of data.weather; track one.id) {
+      <div class="condition">
+        <img class="icon" [src]="iconSource(one.icon)" [alt]="one.description" />
+        <div class="label">{{ one.description | titlecase }}</div>
+      </div>
+    }
+  </div>
 </div>

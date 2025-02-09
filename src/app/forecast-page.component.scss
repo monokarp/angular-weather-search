@@ -1,10 +1,17 @@
 @use '../styles';
 
+:host {
+  height: 100%;
+}
+
 .container {
   @extend .flex-col;
 
-  height: 1vh;
-  max-width: 50%;
+  min-height: 100%;
+  padding: 1rem;
+  margin: 0 auto;
 
-  margin: 2rem auto;
+  @media (min-width: 768px) {
+    max-width: 35%;
+  }
 }

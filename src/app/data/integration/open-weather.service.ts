@@ -13,7 +13,7 @@ import {
 @Injectable()
 export class OpenWeatherService {
   private readonly locationsLimit = 3;
-  private readonly forecastTimestampsCount = 5;
+  private readonly forecastTimestampsCount = 8 * 5; // one timestamp covers 3h
 
   private readonly measuringSystem: MeasuringUnitType = 'metric';
 

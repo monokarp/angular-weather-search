@@ -85,7 +85,7 @@ export interface ForecastItem {
     deg: number; // Wind direction, degrees (meteorological)
     gust?: number; // Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour (optional)
   };
-  visibility: number; // Visibility, meter. The maximum value of the visibility is 10km
+  visibility?: number; // Visibility, meter. The maximum value of the visibility is 10km
   pop: number; // Probability of precipitation
   rain?: {
     '3h'?: number; // Rain volume for last 3 hours, mm (optional)

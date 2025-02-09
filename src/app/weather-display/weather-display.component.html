@@ -1,7 +1,7 @@
 @if (data) {
-  <app-current-weather style="flex-basis: 100%; width: max-content" [data]="data.current"></app-current-weather>
+  <app-current-weather style="flex-basis: 100%" [data]="data.current"></app-current-weather>
   @for (day of data.daily; track trackDailyForecast(day)) {
-    <app-daily-weather style="width: 20%" [data]="day"></app-daily-weather>
+    <app-daily-weather class="daily" [data]="day"></app-daily-weather>
   }
 } @else {
   <div>Search for a city to load weather forecast for</div>

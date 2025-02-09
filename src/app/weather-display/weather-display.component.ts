@@ -14,6 +14,6 @@ export class WeatherDisplayComponent {
   @Input() public data: Forecast | null = null;
 
   public trackDailyForecast(item: DailyWeather): string {
-    return item.dt.toString();
+    return item.date;
   }
 }

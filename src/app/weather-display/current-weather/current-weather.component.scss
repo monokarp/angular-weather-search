@@ -1,0 +1,47 @@
+@use '../../../styles';
+
+$icon-size: 8rem;
+
+.container {
+  @extend .flex-row, .card;
+
+  justify-content: space-between;
+
+  .text-col {
+    @extend .flex-col;
+
+    .degrees {
+      font-size: 4rem;
+      font-weight: bold;
+    }
+
+    .cityname {
+      font-size: 2rem;
+    }
+  }
+
+  .weather {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+
+    .condition {
+      @extend .flex-col;
+      align-items: center;
+
+      .icon {
+        width: $icon-size;
+        height: $icon-size;
+
+        margin: 0.2rem;
+      }
+
+      .label {
+        font-size: large;
+      }
+    }
+  }
+}
