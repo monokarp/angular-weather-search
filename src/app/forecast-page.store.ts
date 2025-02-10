@@ -9,4 +9,7 @@ export class ForecastPageStore {
   public readonly selectedLocation$ = new BehaviorSubject<LocationSelectOption | null>(null);
 
   public readonly forecastData$ = new BehaviorSubject<Forecast | null>(null);
+
+  public readonly loadingLocations$ = new BehaviorSubject<boolean>(false);
+  public readonly loadingForecast$ = new BehaviorSubject<boolean>(false);
 }

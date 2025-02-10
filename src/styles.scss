@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 html,
 body {
   height: 100%;
@@ -32,4 +34,15 @@ body {
   box-shadow: 4px 4px 6px -2px rgb(75, 75, 75);
 
   padding: 1rem;
+}
+
+.notification-snackbar {
+  @include mat.snack-bar-overrides(
+    (
+      container-color: rgb(231, 18, 18),
+      supporting-text-color: white,
+      button-color: white,
+      supporting-text-weight: bold,
+    )
+  );
 }

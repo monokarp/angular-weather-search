@@ -1,21 +1,31 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { outputToObservable } from '@angular/core/rxjs-interop';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { debounceTime, map, switchMap, tap } from 'rxjs';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { DisposableComponent } from './common/disposable.component';
+import { BadNetworkWeatherService } from './data/bad-network-weather.service';
+import { DataModule } from './data/data.module';
 import { WeatherService } from './data/weather.service';
 import { ForecastPageService } from './forecast-page.service';
 import { ForecastPageStore } from './forecast-page.store';
-import { WeatherDisplayComponent } from './weather-display/weather-display.component';
 import { LocationBookmarkService } from './location-bookmark.service';
 import { NetworkTestComponent } from './network-test/network-test.component';
-import { BadNetworkWeatherService } from './data/bad-network-weather.service';
-import { DataModule } from './data/data.module';
+import { WeatherDisplayComponent } from './weather-display/weather-display.component';
+import { LoadingOverlayComponent } from './common/loading-overlay/loading-overlay.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, CitySearchComponent, WeatherDisplayComponent, DataModule, NetworkTestComponent],
+  imports: [
+    CommonModule,
+    CitySearchComponent,
+    WeatherDisplayComponent,
+    DataModule,
+    NetworkTestComponent,
+    MatSnackBarModule,
+    LoadingOverlayComponent,
+  ],
   providers: [
     { provide: WeatherService, useExisting: BadNetworkWeatherService },
     ForecastPageStore,

@@ -1,9 +1,14 @@
 <div class="container">
-  <app-city-search
-    #searchComponent
-    [options]="(store.locations$ | async)!"
-    [selected]="store.selectedLocation$ | async"
-  ></app-city-search>
-  <app-weather-display [data]="store.forecastData$ | async"></app-weather-display>
+  <app-loading-overlay [enabled]="(store.loadingLocations$ | async)!">
+    <app-city-search
+      #searchComponent
+      [options]="(store.locations$ | async)!"
+      [selected]="store.selectedLocation$ | async"
+    >
+    </app-city-search>
+  </app-loading-overlay>
+  <app-loading-overlay [enabled]="(store.loadingForecast$ | async)!">
+    <app-weather-display [data]="store.forecastData$ | async"></app-weather-display>
+  </app-loading-overlay>
 </div>
 <app-network-test></app-network-test>

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input, output } from '@angular/core';
-import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { LocationSelectOption } from '../data/weather.types';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatIconRegistry, MatIconModule } from '@angular/material/icon';
+import { LocationSelectOption } from '../data/weather.types';
 
 @Component({
   selector: 'app-city-search',
@@ -65,14 +65,7 @@ export class CitySearchComponent {
 }
 
 function formatCoordinate(value: number): string {
-  const direction =
-    value >= 0 
-      ? value < 180 
-        ? 'N'
-        : 'E'
-      : value > -180 
-        ? 'S'
-        : 'W';
+  const direction = value >= 0 ? (value < 180 ? 'N' : 'E') : value > -180 ? 'S' : 'W';
   const absCoord = Math.abs(value);
   let degrees = Math.floor(absCoord);
   let minutes = Math.floor((absCoord - degrees) * 60);

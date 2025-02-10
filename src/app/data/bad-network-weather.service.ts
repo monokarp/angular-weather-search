@@ -5,6 +5,9 @@ import { Forecast, Location } from './weather.types';
 
 @Injectable()
 export class BadNetworkWeatherService implements IWeatherService {
+  private readonly slowNetworkDelayMS = 3000;
+  private readonly forcedErrorMessage = 'Network errors enabled';
+
   constructor(
     private service: WeatherService,
     private store: NetworkTestStore,
@@ -22,7 +25,10 @@ export class BadNetworkWeatherService implements IWeatherService {
     const { slowNetwork, requestsThrow } = this.store.network$.getValue();
 
     return new Promise((res, rej) => {
-      setTimeout(() => (requestsThrow ? rej('Network errors enabled') : value.then(res)), slowNetwork ? 500 : 0);
+      setTimeout(
+        () => (requestsThrow ? rej(new Error(this.forcedErrorMessage)) : value.then(res)),
+        slowNetwork ? this.slowNetworkDelayMS : 0,
+      );
     });
   }
 }

@@ -3,6 +3,7 @@ import { ForecastPageStore } from './forecast-page.store';
 import { WeatherService } from './data/weather.service';
 import { Location, LocationSelectOption } from './data/weather.types';
 import { LocationBookmarkService } from './location-bookmark.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class ForecastPageService {
@@ -10,6 +11,7 @@ export class ForecastPageService {
     private store: ForecastPageStore,
     private weather: WeatherService,
     private bookmarks: LocationBookmarkService,
+    private snackbar: MatSnackBar,
   ) {}
 
   public loadBookmarkedLocations() {
@@ -19,7 +21,19 @@ export class ForecastPageService {
   }
 
   public async searchCity(name: string): Promise<void> {
-    const locations: Location[] = name ? await this.weather.suggestLocations(name) : [];
+    let locations: Location[] = [];
+
+    if (name) {
+      this.store.loadingLocations$.next(true);
+
+      try {
+        locations = await this.weather.suggestLocations(name);
+      } catch (err) {
+        this.snackbar.open((err as Error).message, 'OK', { duration: 5000, panelClass: 'notification-snackbar' });
+      } finally {
+        this.store.loadingLocations$.next(false);
+      }
+    }
 
     const bookmarked = this.bookmarks.all().map((one) => ({ ...one, isBookmarked: true }));
     const suggested = locations.map((one) => ({ ...one, isBookmarked: false }));
@@ -28,9 +42,17 @@ export class ForecastPageService {
   }
 
   public async selectLocation(location: LocationSelectOption) {
-    const forecastData = await this.weather.currentWeatherAt(location);
+    this.store.loadingForecast$.next(true);
 
-    this.store.forecastData$.next(forecastData);
+    try {
+      const forecastData = await this.weather.currentWeatherAt(location);
+
+      this.store.forecastData$.next(forecastData);
+    } catch (err) {
+      this.snackbar.open((err as Error).message, 'OK', { duration: 5000, panelClass: 'notification-snackbar' });
+    } finally {
+      this.store.loadingForecast$.next(false);
+    }
   }
 
   public bookmarkLocation(location: LocationSelectOption): void {
