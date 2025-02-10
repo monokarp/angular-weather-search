@@ -30,6 +30,7 @@ export class CitySearchComponent {
   public readonly search = output<string>();
   public readonly select = output<LocationSelectOption>();
   public readonly toggleBookmark = output<LocationSelectOption>();
+  public readonly dismissed = output<void>();
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
     iconRegistry.addSvgIcon('search', sanitizer.bypassSecurityTrustResourceUrl('search.svg'));

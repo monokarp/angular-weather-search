@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { outputToObservable } from '@angular/core/rxjs-interop';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { debounceTime, map, switchMap } from 'rxjs';
+import { debounceTime, of, switchMap, tap } from 'rxjs';
 import { CitySearchComponent } from './city-search/city-search.component';
 import { DisposableComponent } from './common/disposable.component';
 import { LoadingOverlayComponent } from './common/loading-overlay/loading-overlay.component';
@@ -53,7 +53,7 @@ export class ForecastPageComponent extends DisposableComponent implements AfterV
       .pipe(
         this.takeUntilDispose(),
         debounceTime(300),
-        switchMap((cityName) => this.service.searchCity(cityName)),
+        switchMap((cityName) => (cityName ? this.service.searchCity(cityName) : of(this.service.clearSuggestions()))),
       )
       .subscribe();
 
@@ -67,7 +67,14 @@ export class ForecastPageComponent extends DisposableComponent implements AfterV
     outputToObservable(this.searchComponent.toggleBookmark)
       .pipe(
         this.takeUntilDispose(),
-        map((location) => this.service.bookmarkLocation(location)),
+        tap((location) => this.service.bookmarkLocation(location)),
+      )
+      .subscribe();
+
+    outputToObservable(this.searchComponent.dismissed)
+      .pipe(
+        this.takeUntilDispose(),
+        tap(() => this.service.clearSuggestions()),
       )
       .subscribe();
   }

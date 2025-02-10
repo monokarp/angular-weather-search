@@ -21,24 +21,16 @@ export class ForecastPageService {
   }
 
   public async searchCity(name: string): Promise<void> {
-    let locations: Location[] = [];
+    const suggestedLocations = (await this.requestSuggestedLocations(name)).map((one) => ({
+      ...one,
+      isBookmarked: false,
+    }));
 
-    if (name) {
-      this.store.loadingLocations$.next(true);
+    this.store.locations$.next(this.allBookmarkedLocations().concat(suggestedLocations));
+  }
 
-      try {
-        locations = await this.weather.suggestLocations(name);
-      } catch (err) {
-        this.snackbar.open((err as Error).message, 'OK', { duration: 5000, panelClass: 'notification-snackbar' });
-      } finally {
-        this.store.loadingLocations$.next(false);
-      }
-    }
-
-    const bookmarked = this.bookmarks.all().map((one) => ({ ...one, isBookmarked: true }));
-    const suggested = locations.map((one) => ({ ...one, isBookmarked: false }));
-
-    this.store.locations$.next(bookmarked.concat(suggested));
+  public clearSuggestions() {
+    this.store.locations$.next(this.allBookmarkedLocations());
   }
 
   public async loadForecast(location: LocationSelectOption) {
@@ -65,5 +57,23 @@ export class ForecastPageService {
     this.bookmarks.toggleBookmark(location);
 
     location.isBookmarked = !location.isBookmarked;
+  }
+
+  private async requestSuggestedLocations(cityName: string): Promise<Location[]> {
+    this.store.loadingLocations$.next(true);
+
+    try {
+      return await this.weather.suggestLocations(cityName);
+    } catch (err) {
+      this.snackbar.open((err as Error).message, 'OK', { duration: 5000, panelClass: 'notification-snackbar' });
+    } finally {
+      this.store.loadingLocations$.next(false);
+    }
+
+    return [];
+  }
+
+  private allBookmarkedLocations() {
+    return this.bookmarks.all().map((one) => ({ ...one, isBookmarked: true }));
   }
 }

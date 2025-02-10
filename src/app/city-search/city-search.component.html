@@ -15,6 +15,7 @@
     #auto="matAutocomplete"
     [displayWith]="displayLocation"
     (optionSelected)="onOptionSelect($event)"
+    (closed)="dismissed.emit()"
   >
     @for (option of options; track trackLocation(option)) {
       <mat-option [value]="option">
