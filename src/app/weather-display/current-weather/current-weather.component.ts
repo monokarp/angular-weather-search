@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CurrentWeather } from '../../data/weather.types';
 import { DegreesPipe } from '../../common/degrees.pipe';
 import { TitleCasePipe } from '@angular/common';
+import { OpenWeatherService } from '../../data/integration/open-weather.service';
 
 @Component({
   selector: 'app-current-weather',
@@ -13,7 +14,5 @@ import { TitleCasePipe } from '@angular/common';
 export class CurrentWeatherComponent {
   @Input() public data!: CurrentWeather;
 
-  public iconSource(iconId: string) {
-    return `https://openweathermap.org/img/wn/${iconId}@2x.png`;
-  }
+  constructor(public service: OpenWeatherService) {}
 }

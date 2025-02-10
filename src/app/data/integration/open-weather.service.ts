@@ -63,4 +63,8 @@ export class OpenWeatherService {
 
     return possibleLocations;
   }
+
+  public iconUrl(iconId: string): string {
+    return `https://openweathermap.org/img/wn/${iconId}@2x.png`;
+  }
 }

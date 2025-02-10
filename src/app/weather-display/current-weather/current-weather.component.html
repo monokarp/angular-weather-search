@@ -9,7 +9,7 @@
   <div class="weather">
     @for (one of data.weather; track one.id) {
       <div class="condition">
-        <img class="icon" [src]="iconSource(one.icon)" [alt]="one.description" />
+        <img class="icon" [src]="service.iconUrl(one.icon)" [alt]="one.description" />
         <div class="label">{{ one.description | titlecase }}</div>
       </div>
     }
