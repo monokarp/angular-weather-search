@@ -1,8 +1,10 @@
 import { ForecastResponse, WeatherCondition } from './integration/openweather.types';
 import { DailyWeather, WeatherConditionData } from './weather.types';
 
+type DailyWeatherTemperatures = Omit<DailyWeather, 'date' | 'weather'> & { weather: WeatherCondition[] };
+
 export function mapDailyTemperature(data: ForecastResponse): DailyWeather[] {
-  const map = new Map<string, Omit<DailyWeather, 'date' | 'weather'> & { weather: WeatherCondition[] }>();
+  const map = new Map<string, DailyWeatherTemperatures>();
 
   for (const one of data.list) {
     const [date] = one.dt_txt.split(' ');

@@ -6,6 +6,7 @@ import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LocationSelectOption } from '../data/weather.types';
+import { formatCoordinates } from './format-coordinates';
 
 @Component({
   selector: 'app-city-search',
@@ -47,7 +48,7 @@ export class CitySearchComponent {
   }
 
   public displayCoords(value: LocationSelectOption | null): string {
-    return value ? `  (${formatCoordinate(value.lat)}, ${formatCoordinate(value.lon)})` : '';
+    return value ? formatCoordinates(value.lat, value.lon) : '';
   }
 
   public onInput(evt: Event) {
@@ -63,24 +64,4 @@ export class CitySearchComponent {
 
     this.toggleBookmark.emit(option);
   }
-}
-
-function formatCoordinate(value: number): string {
-  const direction = value >= 0 ? (value < 180 ? 'N' : 'E') : value > -180 ? 'S' : 'W';
-  const absCoord = Math.abs(value);
-  let degrees = Math.floor(absCoord);
-  let minutes = Math.floor((absCoord - degrees) * 60);
-  let seconds = ((absCoord - degrees - minutes / 60) * 3600).toFixed(2);
-
-  if (seconds === '60.00') {
-    seconds = '00.00';
-    minutes++;
-  }
-
-  if (minutes === 60) {
-    minutes = 0;
-    degrees++;
-  }
-
-  return `${degrees}° ${minutes}' ${seconds}" ${direction}`;
 }

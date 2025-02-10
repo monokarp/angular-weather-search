@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpResponse } from '@angular/common/http';
 
 export interface CacheEntry {
   url: string;
-  response: HttpResponse<any>;
+  response: HttpResponse<unknown>;
   entryTime: number;
 }
 
