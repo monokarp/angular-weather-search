@@ -1,24 +1,24 @@
 .flex-col {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .flex-row {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .w-full {
-    width: 100%;
+  width: 100%;
 }
 
 .card {
-    border-radius: 0.5rem;
+  border-radius: 0.5rem;
 
-    background: var(--mat-sys-secondary);
-    color: var(--mat-sys-on-secondary);
+  background: var(--mat-sys-secondary);
+  color: var(--mat-sys-on-secondary);
 
-    box-shadow: 4px 4px 6px -2px rgb(75, 75, 75);
+  box-shadow: 4px 4px 6px -2px rgb(75, 75, 75);
 
-    padding: 1rem;
+  padding: 1rem;
 }

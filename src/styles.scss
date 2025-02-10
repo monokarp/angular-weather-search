@@ -8,11 +8,13 @@ body {
 html {
   color-scheme: light-dark;
 
-  @include mat.theme((
+  @include mat.theme(
+    (
       color: mat.$green-palette,
       typography: Roboto,
       density: 0,
-    ));
+    )
+  );
 }
 
 body {
@@ -24,10 +26,12 @@ body {
 }
 
 .notification-snackbar {
-  @include mat.snack-bar-overrides((
+  @include mat.snack-bar-overrides(
+    (
       container-color: var(--mat-sys-error-container),
       supporting-text-color: var(--mat-sys-on-error-container),
       button-color: var(--mat-sys-on-error-container),
       supporting-text-weight: bold,
-    ));
+    )
+  );
 }
