@@ -39,6 +39,12 @@ jobs:
         API_URL: ${{ secrets.WEATHER_API_URL }}
         API_KEY: ${{ secrets.WEATHER_API_KEY }}
 
+    - name: Lint
+      run: npm --no-install run lint
+
+    - name: Test
+      run: npm --no-install run test
+
     - name: Build
       run: npx --no-install ng build
 
