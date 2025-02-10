@@ -8,13 +8,11 @@ body {
 html {
   color-scheme: light-dark;
 
-  @include mat.theme(
-    (
+  @include mat.theme((
       color: mat.$green-palette,
       typography: Roboto,
       density: 0,
-    )
-  );
+    ));
 }
 
 body {
@@ -25,38 +23,11 @@ body {
   color: var(--mat-sys-on-surface);
 }
 
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-row {
-  display: flex;
-  flex-direction: row;
-}
-
-.w-full {
-  width: 100%;
-}
-
-.card {
-  border-radius: 0.5rem;
-
-  background: var(--mat-sys-secondary);
-  color: var(--mat-sys-on-secondary);
-
-  box-shadow: 4px 4px 6px -2px rgb(75, 75, 75);
-
-  padding: 1rem;
-}
-
 .notification-snackbar {
-  @include mat.snack-bar-overrides(
-    (
+  @include mat.snack-bar-overrides((
       container-color: var(--mat-sys-error-container),
       supporting-text-color: var(--mat-sys-on-error-container),
       button-color: var(--mat-sys-on-error-container),
       supporting-text-weight: bold,
-    )
-  );
+    ));
 }
