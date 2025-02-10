@@ -1,4 +1,4 @@
-<div class="container">
+<div data-testid="root" class="container">
   <app-loading-overlay [enabled]="(store.loadingLocations$ | async)!">
     <app-city-search
       #searchComponent

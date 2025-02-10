@@ -14,6 +14,7 @@ import { ForecastPageStore } from './forecast-page.store';
 import { LocationBookmarkService } from './location-bookmark.service';
 import { NetworkTestComponent } from './network-test/network-test.component';
 import { WeatherDisplayComponent } from './weather-display/weather-display.component';
+import { TestIdDirective } from './common/test-id.directive';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,7 @@ import { WeatherDisplayComponent } from './weather-display/weather-display.compo
     NetworkTestComponent,
     MatSnackBarModule,
     LoadingOverlayComponent,
+    TestIdDirective,
   ],
   providers: [
     { provide: WeatherService, useExisting: BadNetworkWeatherService },
