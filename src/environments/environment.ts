@@ -1,4 +1,4 @@
 export const environment = {
-  ApiUrl: '$API_URL',
+  ApiUrl: 'https://api.openweathermap.org',
   ApiKey: '$API_KEY',
 };
