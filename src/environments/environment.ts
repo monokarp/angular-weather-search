@@ -1,4 +1,4 @@
 export const environment = {
-  ApiUrl: '',
-  ApiKey: '',
+  ApiUrl: '$API_URL',
+  ApiKey: '$API_KEY',
 };
