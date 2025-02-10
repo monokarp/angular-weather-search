@@ -3,6 +3,4 @@
   @for (day of data.daily; track trackDailyForecast(day)) {
     <app-daily-weather class="daily" [data]="day"></app-daily-weather>
   }
-} @else {
-  <div>Search for a city to load weather forecast for</div>
 }

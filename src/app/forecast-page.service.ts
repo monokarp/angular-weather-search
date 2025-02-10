@@ -41,8 +41,12 @@ export class ForecastPageService {
     this.store.locations$.next(bookmarked.concat(suggested));
   }
 
-  public async selectLocation(location: LocationSelectOption) {
-    this.store.loadingForecast$.next(true);
+  public async loadForecast(location: LocationSelectOption) {
+    const requiresOverlay = !!this.store.forecastData$.getValue();
+
+    if (requiresOverlay) {
+      this.store.loadingForecast$.next(true);
+    }
 
     try {
       const forecastData = await this.weather.currentWeatherAt(location);
@@ -51,7 +55,9 @@ export class ForecastPageService {
     } catch (err) {
       this.snackbar.open((err as Error).message, 'OK', { duration: 5000, panelClass: 'notification-snackbar' });
     } finally {
-      this.store.loadingForecast$.next(false);
+      if (requiresOverlay) {
+        this.store.loadingForecast$.next(false);
+      }
     }
   }
 

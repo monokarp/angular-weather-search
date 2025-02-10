@@ -62,7 +62,7 @@ export class ForecastPageComponent extends DisposableComponent implements AfterV
       .pipe(
         this.takeUntilDispose(),
         tap((value) => console.log('select', value)),
-        switchMap((location) => this.service.selectLocation(location)),
+        switchMap((location) => this.service.loadForecast(location)),
       )
       .subscribe();
 
