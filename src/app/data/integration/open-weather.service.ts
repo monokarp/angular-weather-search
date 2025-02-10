@@ -23,7 +23,7 @@ export class OpenWeatherService {
     const { lat, lon } = coords;
 
     return firstValueFrom(
-      this.http.get<CurrentWeatherResponse>('https://api.openweathermap.org/data/2.5/weather', {
+      this.http.get<CurrentWeatherResponse>(`${environment.ApiUrl}/data/2.5/weather`, {
         params: {
           lat,
           lon,
@@ -38,7 +38,7 @@ export class OpenWeatherService {
     const { lat, lon } = coords;
 
     return firstValueFrom(
-      this.http.get<ForecastResponse>('https://api.openweathermap.org/data/2.5/forecast', {
+      this.http.get<ForecastResponse>(`${environment.ApiUrl}/data/2.5/forecast`, {
         params: {
           lat,
           lon,
@@ -52,7 +52,7 @@ export class OpenWeatherService {
 
   public async possibleLocationsOf(cityName: string): Promise<DirectGeocodingResponse[]> {
     const possibleLocations = await firstValueFrom(
-      this.http.get<DirectGeocodingResponse[]>('http://api.openweathermap.org/geo/1.0/direct', {
+      this.http.get<DirectGeocodingResponse[]>(`${environment.ApiUrl}/geo/1.0/direct`, {
         params: {
           q: cityName,
           limit: this.locationsLimit,
