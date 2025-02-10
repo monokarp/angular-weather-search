@@ -11,24 +11,26 @@
 
   width: max-content;
   border-radius: 1rem;
-  margin: 0 auto;
 
-  background-color: rgb(50, 50, 50, 0.5);
+  margin: 0 auto;
   padding: 0.5rem;
 
+  background: var(--mat-sys-secondary-container);
+
   .label {
-    font-size: 1.2rem;
-    font-weight: bold;
+    font:var(--mat-sys-title-large);
     margin-bottom: 0.5rem;
-    color: white;
+    color: var(--mat-sys-on-secondary-container);
   }
 
   .button-group {
     .mat-button-toggle {
-      background-color: rgb(9, 67, 14);
+      background: var(--mat-sys-secondary);
+      color: var(--mat-sys-on-secondary);
 
       &.mat-button-toggle-checked {
-        background-color: rgb(188, 17, 17);
+        background: var(--mat-sys-error);
+        color: var(--mat-sys-on-error);
       }
     }
   }

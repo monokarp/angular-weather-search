@@ -20,7 +20,7 @@
     @for (option of options; track trackLocation(option)) {
       <mat-option [value]="option">
         <div>{{ displayLocation(option) }}</div>
-        <div style="font-size: 0.8rem">{{ displayCoords(option) }}</div>
+        <div class="coords">{{ displayCoords(option) }}</div>
         <mat-icon
           class="bookmark-btn"
           [svgIcon]="option.isBookmarked ? 'bookmark_star' : 'bookmark'"

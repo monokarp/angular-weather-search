@@ -20,15 +20,14 @@ $icon-size: 4rem;
   .header {
     @extend .vertical;
 
-    font-size: larger;
-    font-weight: bold;
+    font: var(--mat-sys-headline-small);
 
     align-items: baseline;
 
     margin-right: 2rem;
 
     .sub {
-      font-weight: normal;
+      font: var(--mat-sys-body-large);
     }
 
     @media (min-width: 768px) {

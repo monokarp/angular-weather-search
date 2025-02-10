@@ -3,7 +3,11 @@
   padding: 0.3rem;
 
   &:hover {
-    background-color: white;
-    fill: black;
+    background: var(--mat-sys-primary);
+    fill: var(--mat-sys-on-primary);
   }
+}
+
+.coords {
+  font: var(--mat-sys-label-medium);
 }

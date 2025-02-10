@@ -5,7 +5,7 @@ import { Forecast, Location } from './weather.types';
 
 @Injectable()
 export class BadNetworkWeatherService implements IWeatherService {
-  private readonly slowNetworkDelayMS = 3000;
+  private readonly slowNetworkDelayMS = 750;
   private readonly forcedErrorMessage = 'Network errors enabled';
 
   constructor(
