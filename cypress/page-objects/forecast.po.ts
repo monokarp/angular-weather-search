@@ -1,13 +1,16 @@
 import { TestIds } from '../../src/test-ids';
+import { component as citySearch } from './city-search.co';
+import { component as weatherDisplay } from './weather-display.co';
 
-export const ForecastPage = {
-  itself: () => cy.byTestId(TestIds.ForecastPage.Host),
+class ForecastPage {
+  private readonly testIds = TestIds.ForecastPage;
 
-  CitySearch: {
-    itself: () => cy.byTestId(TestIds.ForecastPage.CitySearch.Host),
-  },
+  public readonly CitySearch = citySearch;
+  public readonly WeatherDisplay = weatherDisplay;
 
-  WeatherDisplay: {
-    itself: () => cy.byTestId(TestIds.ForecastPage.Host),
-  },
-};
+  public itself() {
+    return cy.byTestId(this.testIds.Host);
+  }
+}
+
+export const page = new ForecastPage();

@@ -13,7 +13,7 @@ import { TestIds } from '../../test-ids';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeatherDisplayComponent {
-  @Input() public data: Forecast | null = null;
+  @Input() public data!: Forecast;
 
   public readonly TestIds = TestIds.ForecastPage.WeatherDisplay;
 

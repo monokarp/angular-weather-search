@@ -9,10 +9,9 @@
     </app-city-search>
   </app-loading-overlay>
   <app-loading-overlay [enabled]="(store.loadingForecast$ | async)!">
-    <app-weather-display
-      [appTestId]="TestIds.WeatherDisplay.Host"
-      [data]="store.forecastData$ | async"
-    ></app-weather-display>
+    @if (store.forecastData$ | async; as data) {
+      <app-weather-display [appTestId]="TestIds.WeatherDisplay.Host" [data]="data"></app-weather-display>
+    }
   </app-loading-overlay>
 </div>
 <app-network-test></app-network-test>
