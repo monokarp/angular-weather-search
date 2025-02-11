@@ -15,12 +15,13 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import { mount } from 'cypress/angular'
+import { mount } from 'cypress/angular';
+import { CyChainable, CyOptions } from './commands';
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -30,17 +31,13 @@ declare global {
   namespace Cypress {
     interface Chainable {
       mount: typeof mount;
-      byTestId<E extends Node = HTMLElement>(
-        id: string,
-        options?: Partial<
-          Cypress.Loggable & Cypress.Timeoutable & Cypress.Withinable & Cypress.Shadow
-        >,
-      ): Cypress.Chainable<JQuery<E>>;
+      byTestId<E extends Node = HTMLElement>(id: string, options?: CyOptions): CyChainable<E>;
+      clickOutside(options?: CyOptions): CyChainable<HTMLBodyElement>;
     }
   }
 }
 
-Cypress.Commands.add('mount', mount)
+Cypress.Commands.add('mount', mount);
 
 // Example use:
 // cy.mount(MyComponent)

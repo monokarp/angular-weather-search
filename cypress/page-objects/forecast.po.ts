@@ -8,7 +8,7 @@ class ForecastPage {
   public readonly CitySearch = citySearch;
   public readonly WeatherDisplay = weatherDisplay;
 
-  public itself() {
+  public get itself() {
     return cy.byTestId(this.testIds.Host);
   }
 }

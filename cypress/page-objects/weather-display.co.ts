@@ -9,7 +9,7 @@ class WeatherDisplayComponent {
 
   public readonly Daily = daily;
 
-  public itself() {
+  public get itself() {
     return cy.byTestId(this.testIds.Host);
   }
 }

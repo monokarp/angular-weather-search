@@ -1,6 +1,6 @@
 <div class="wrapper">
   @if (enabled) {
-    <div class="overlay" [class.animate]="showAnimation"></div>
+    <div class="overlay" [appTestId]="TestId" [class.animate]="showAnimation"></div>
   }
   <div [class.mute]="enabled">
     <ng-content></ng-content>

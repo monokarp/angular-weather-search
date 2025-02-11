@@ -19,7 +19,7 @@
     (closed)="dismissed.emit()"
   >
     @for (option of options; track trackLocation(option)) {
-      <mat-option [appTestId]="TestIds.Option" [value]="option">
+      <mat-option [appTestId]="TestIds.Location" [value]="option">
         <div>{{ displayLocation(option) }}</div>
         <div class="coords">{{ displayCoords(option) }}</div>
         <mat-icon

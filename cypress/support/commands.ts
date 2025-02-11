@@ -43,10 +43,16 @@ import { testIdAttrName } from '../../src/test-ids';
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+export type CyOptions = Partial<Cypress.Loggable & Cypress.Timeoutable & Cypress.Withinable & Cypress.Shadow>;
+export type CyChainable<E extends Node = HTMLElement> = Cypress.Chainable<JQuery<E>>;
+
 Cypress.Commands.add(
   'byTestId',
-  <E extends Node = HTMLElement>(
-    id: string,
-    options?: Partial<Cypress.Loggable & Cypress.Timeoutable & Cypress.Withinable & Cypress.Shadow>,
-  ): Cypress.Chainable<JQuery<E>> => cy.get(`[${testIdAttrName}="${id}"]`, options),
+  <E extends Node = HTMLElement>(id: string, options?: CyOptions): CyChainable<E> =>
+    cy.get(`[${testIdAttrName}="${id}"]`, options),
+);
+
+Cypress.Commands.add(
+  'clickOutside',
+  (options?: CyOptions): CyChainable<HTMLBodyElement> => cy.get('body', options).click(0, 0),
 );

@@ -26,7 +26,7 @@ export class BadNetworkWeatherService implements IWeatherService {
 
     return new Promise((res, rej) => {
       setTimeout(
-        () => (requestsThrow ? rej(new Error(this.forcedErrorMessage)) : value.then(res)),
+        () => (requestsThrow ? rej(new Error(this.forcedErrorMessage)) : value.then(res, rej)),
         slowNetwork ? this.slowNetworkDelayMS : 0,
       );
     });

@@ -1,0 +1,6 @@
+<span matSnackBarLabel>
+  {{ data.message }}
+</span>
+<span matSnackBarActions>
+  <button mat-button matSnackBarAction [appTestId]="TestIds.Action" (click)="dismiss()">{{ data.actionText }}</button>
+</span>

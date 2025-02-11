@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ForecastPageStore } from './forecast-page.store';
+import { NotificationService } from './common/notifications.service';
 import { WeatherService } from './data/weather.service';
 import { Location, LocationSelectOption } from './data/weather.types';
+import { ForecastPageStore } from './forecast-page.store';
 import { LocationBookmarkService } from './location-bookmark.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class ForecastPageService {
@@ -11,7 +11,7 @@ export class ForecastPageService {
     private store: ForecastPageStore,
     private weather: WeatherService,
     private bookmarks: LocationBookmarkService,
-    private snackbar: MatSnackBar,
+    private notifications: NotificationService,
   ) {}
 
   public loadBookmarkedLocations() {
@@ -45,7 +45,7 @@ export class ForecastPageService {
 
       this.store.forecastData$.next(forecastData);
     } catch (err) {
-      this.snackbar.open((err as Error).message, 'OK', { duration: 5000, panelClass: 'notification-snackbar' });
+      this.notifications.error((err as Error).message);
     } finally {
       if (requiresOverlay) {
         this.store.loadingForecast$.next(false);
@@ -65,7 +65,7 @@ export class ForecastPageService {
     try {
       return await this.weather.suggestLocations(cityName);
     } catch (err) {
-      this.snackbar.open((err as Error).message, 'OK', { duration: 5000, panelClass: 'notification-snackbar' });
+      this.notifications.error((err as Error).message);
     } finally {
       this.store.loadingLocations$.next(false);
     }

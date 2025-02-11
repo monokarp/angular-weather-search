@@ -6,7 +6,7 @@ export const TestIds = {
     CitySearch: {
       Host: 'city-search',
       Input: 'city-search-input',
-      Option: 'city-search-option',
+      Location: 'city-search-option',
       Bookmark: 'city-search-bookmark',
     },
     WeatherDisplay: {
@@ -18,5 +18,10 @@ export const TestIds = {
         Host: 'weather-display-daily',
       },
     },
+  },
+  LoadingOverlay: 'loading-overlay',
+  ErrorNotification: {
+    Host: 'error-notification',
+    Action: 'error-notification-action',
   },
 };

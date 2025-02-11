@@ -3,20 +3,32 @@ import { TestIds } from '../../src/test-ids';
 class CitySearchComponent {
   private readonly testIds = TestIds.ForecastPage.CitySearch;
 
-  public itself() {
+  public get itself() {
     return cy.byTestId(this.testIds.Host);
   }
 
-  public Input() {
-    return cy.byTestId(TestIds.ForecastPage.CitySearch.Input);
+  public get Input() {
+    return this.itself.byTestId(TestIds.ForecastPage.CitySearch.Input);
   }
 
-  public Option() {
-    return cy.byTestId(TestIds.ForecastPage.CitySearch.Option);
+  public get Locations() {
+    return this.itself.byTestId(TestIds.ForecastPage.CitySearch.Location);
   }
 
-  public Bookmark() {
-    return cy.byTestId(TestIds.ForecastPage.CitySearch.Bookmark);
+  public get Bookmark() {
+    return this.itself.byTestId(TestIds.ForecastPage.CitySearch.Bookmark);
+  }
+
+  public locationsAreEmpty() {
+    this.Input.focus();
+
+    this.Locations.should('not.exist');
+  }
+
+  public searchFor(cityName: string, expectedSuggestedLocationCount: number) {
+    this.Input.focus().type(cityName);
+
+    this.Locations.should('be.visible').should('have.lengthOf', expectedSuggestedLocationCount);
   }
 }
 
