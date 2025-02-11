@@ -1,6 +1,10 @@
 @if (data) {
-  <app-current-weather style="flex-basis: 100%" [data]="data.current"></app-current-weather>
+  <app-current-weather
+    [appTestId]="TestIds.Current.Host"
+    class="current"
+    [data]="data.current"
+  ></app-current-weather>
   @for (day of data.daily; track trackDailyForecast(day)) {
-    <app-daily-weather class="daily" [data]="day"></app-daily-weather>
+    <app-daily-weather class="daily" [appTestId]="TestIds.Daily.Host" [data]="day"></app-daily-weather>
   }
 }

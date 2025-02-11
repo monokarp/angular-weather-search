@@ -1,4 +1,4 @@
-import { testIdAttrName } from '../../src/test-id';
+import { testIdAttrName } from '../../src/test-ids';
 // ***********************************************
 // This example namespace declaration will help
 // with Intellisense and code completion in your

@@ -1,6 +1,13 @@
-import { Directive } from '@angular/core';
-import { testIdAttrName } from '../../test-id';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { testIdAttrName } from '../../test-ids';
 
-// eslint-disable-next-line @angular-eslint/directive-selector
-@Directive({ selector: `[${testIdAttrName}]`, standalone: true })
-export class TestIdDirective {}
+@Directive({ selector: '[appTestId]', standalone: true })
+export class TestIdDirective implements OnInit {
+  @Input() appTestId!: string;
+
+  constructor(private el: ElementRef) {}
+
+  public ngOnInit(): void {
+    this.el.nativeElement.setAttribute(testIdAttrName, this.appTestId);
+  }
+}

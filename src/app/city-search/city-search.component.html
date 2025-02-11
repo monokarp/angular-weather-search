@@ -2,6 +2,7 @@
   <mat-label>Search by City Name</mat-label>
   <input
     #input
+    [appTestId]="TestIds.Input"
     type="text"
     placeholder="Start typing to search for a city"
     matInput
@@ -18,11 +19,12 @@
     (closed)="dismissed.emit()"
   >
     @for (option of options; track trackLocation(option)) {
-      <mat-option [value]="option">
+      <mat-option [appTestId]="TestIds.Option" [value]="option">
         <div>{{ displayLocation(option) }}</div>
         <div class="coords">{{ displayCoords(option) }}</div>
         <mat-icon
           class="bookmark-btn"
+          [appTestId]="TestIds.Bookmark"
           [svgIcon]="option.isBookmarked ? 'bookmark_star' : 'bookmark'"
           (click)="onBookmark($event, option)"
         ></mat-icon>

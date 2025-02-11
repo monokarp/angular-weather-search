@@ -1,14 +1,18 @@
-<div data-testid="root" class="container">
+<div [appTestId]="TestIds.Host" class="container">
   <app-loading-overlay [enabled]="(store.loadingLocations$ | async)!">
     <app-city-search
       #searchComponent
+      [appTestId]="TestIds.CitySearch.Host"
       [options]="(store.locations$ | async)!"
       [selected]="store.selectedLocation$ | async"
     >
     </app-city-search>
   </app-loading-overlay>
   <app-loading-overlay [enabled]="(store.loadingForecast$ | async)!">
-    <app-weather-display [data]="store.forecastData$ | async"></app-weather-display>
+    <app-weather-display
+      [appTestId]="TestIds.WeatherDisplay.Host"
+      [data]="store.forecastData$ | async"
+    ></app-weather-display>
   </app-loading-overlay>
 </div>
 <app-network-test></app-network-test>

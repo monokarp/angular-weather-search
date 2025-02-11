@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LocationSelectOption } from '../data/weather.types';
 import { formatCoordinates } from './format-coordinates';
+import { TestIdDirective } from '../common/test-id.directive';
+import { TestIds } from '../../test-ids';
 
 @Component({
   selector: 'app-city-search',
@@ -17,6 +19,7 @@ import { formatCoordinates } from './format-coordinates';
     ReactiveFormsModule,
     MatIconModule,
     MatIconModule,
+    TestIdDirective,
   ],
   templateUrl: './city-search.component.html',
   styleUrl: './city-search.component.scss',
@@ -25,6 +28,8 @@ import { formatCoordinates } from './format-coordinates';
 export class CitySearchComponent {
   @Input() public options!: LocationSelectOption[];
   @Input() public selected: LocationSelectOption | null = null;
+
+  public readonly TestIds = TestIds.ForecastPage.CitySearch;
 
   public readonly inputControl = new FormControl('');
 

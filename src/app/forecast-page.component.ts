@@ -15,6 +15,7 @@ import { LocationBookmarkService } from './location-bookmark.service';
 import { NetworkTestComponent } from './network-test/network-test.component';
 import { WeatherDisplayComponent } from './weather-display/weather-display.component';
 import { TestIdDirective } from './common/test-id.directive';
+import { TestIds } from '../test-ids';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +41,8 @@ import { TestIdDirective } from './common/test-id.directive';
 })
 export class ForecastPageComponent extends DisposableComponent implements AfterViewInit {
   @ViewChild('searchComponent') searchComponent!: CitySearchComponent;
+
+  public readonly TestIds = TestIds.ForecastPage;
 
   constructor(
     public store: ForecastPageStore,
