@@ -34,11 +34,7 @@ export class ForecastPageService {
   }
 
   public async loadForecast(location: LocationSelectOption) {
-    const requiresOverlay = !!this.store.forecastData$.getValue();
-
-    if (requiresOverlay) {
-      this.store.loadingForecast$.next(true);
-    }
+    this.store.loadingData$.next(true);
 
     try {
       const forecastData = await this.weather.currentWeatherAt(location);
@@ -47,9 +43,7 @@ export class ForecastPageService {
     } catch (err) {
       this.notifications.error((err as Error).message);
     } finally {
-      if (requiresOverlay) {
-        this.store.loadingForecast$.next(false);
-      }
+      this.store.loadingData$.next(false);
     }
   }
 
@@ -60,14 +54,14 @@ export class ForecastPageService {
   }
 
   private async requestSuggestedLocations(cityName: string): Promise<Location[]> {
-    this.store.loadingLocations$.next(true);
+    this.store.loadingData$.next(true);
 
     try {
       return await this.weather.suggestLocations(cityName);
     } catch (err) {
       this.notifications.error((err as Error).message);
     } finally {
-      this.store.loadingLocations$.next(false);
+      this.store.loadingData$.next(false);
     }
 
     return [];

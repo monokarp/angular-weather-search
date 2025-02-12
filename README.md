@@ -12,6 +12,7 @@ Static checks:
 - `npm run build` to check asset budgets
 - `npm run test` to run karma server; `npm run test:ci` headless
 - `npm run e2e` to open cypress; `npm run e2e:ci` headless
+- `npm run check` does all of the above in sequence
 
 Serve locally:
 `ng serve`

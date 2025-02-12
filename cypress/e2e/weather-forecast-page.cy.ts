@@ -2,6 +2,8 @@ import { page as forecastPage } from '../page-objects/forecast.po';
 import { component as loadingOverlay } from '../page-objects/loading-overlay.co';
 import { component as errorNotification } from '../page-objects/error-notification.co';
 
+const overlayDelayMs = 1000;
+
 describe('Weather forecast page', () => {
   beforeEach(() => {
     cy.visit('/');
@@ -60,7 +62,7 @@ describe('Weather forecast page', () => {
   it('Overlays the widgets while data is loading', () => {
     cy.intercept('GET', '**/geo/**', (req) => {
       req.on('response', (res) => {
-        res.setDelay(2000);
+        res.setDelay(overlayDelayMs);
       });
     }).as('geocoding');
 
@@ -68,9 +70,23 @@ describe('Weather forecast page', () => {
 
     forecastPage.CitySearch.Input.focus().type('rome');
 
-    loadingOverlay.itself.should('be.visible').should('have.lengthOf', 1);
+    loadingOverlay.itself.should('be.visible');
 
     cy.wait('@geocoding');
+
+    loadingOverlay.itself.should('not.exist');
+
+    cy.intercept('GET', '**/data/**', (req) => {
+      req.on('response', (res) => {
+        res.setDelay(overlayDelayMs);
+      });
+    }).as('forecast');
+
+    forecastPage.CitySearch.Locations.first().click();
+
+    loadingOverlay.itself.should('be.visible');
+
+    cy.wait('@forecast');
 
     loadingOverlay.itself.should('not.exist');
   });

@@ -10,6 +10,5 @@ export class ForecastPageStore {
 
   public readonly forecastData$ = new BehaviorSubject<Forecast | null>(null);
 
-  public readonly loadingLocations$ = new BehaviorSubject<boolean>(false);
-  public readonly loadingForecast$ = new BehaviorSubject<boolean>(false);
+  public readonly loadingData$ = new BehaviorSubject<boolean>(false);
 }

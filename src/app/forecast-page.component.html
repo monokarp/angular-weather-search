@@ -1,5 +1,5 @@
 <div [appTestId]="TestIds.Host" class="container">
-  <app-loading-overlay [enabled]="(store.loadingLocations$ | async)!">
+  <app-loading-overlay [enabled]="(store.loadingData$ | async)!">
     <app-city-search
       #searchComponent
       [appTestId]="TestIds.CitySearch.Host"
@@ -7,8 +7,6 @@
       [selected]="store.selectedLocation$ | async"
     >
     </app-city-search>
-  </app-loading-overlay>
-  <app-loading-overlay [enabled]="(store.loadingForecast$ | async)!">
     @if (store.forecastData$ | async; as data) {
       <app-weather-display [appTestId]="TestIds.WeatherDisplay.Host" [data]="data"></app-weather-display>
     }
